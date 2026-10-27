@@ -1,0 +1,39 @@
+{
+  "name": "calc-impuestos-ar",
+  "version": "2026.8.0",
+  "description": "Guía y calculadora open-source de impuestos en Argentina 2026: monotributo, Responsable Inscripto, IIBB, retenciones e-commerce y Factura E.",
+  "type": "module",
+  "main": "index.js",
+  "exports": "./index.js",
+  "bin": {
+    "calc-impuestos-ar": "index.js"
+  },
+  "files": [
+    "index.js",
+    "data/escalas-2026.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test tests/"
+  },
+  "engines": {
+    "node": ">=18.3"
+  },
+  "keywords": [
+    "argentina",
+    "impuestos",
+    "monotributo",
+    "responsable-inscripto",
+    "iva",
+    "iibb",
+    "factura-e",
+    "arca",
+    "afip",
+    "ecommerce",
+    "calculadora"
+  ],
+  "author": "Contablix (https://contablix.ar)",
+  "homepage": "https://contablix.ar",
+  "license": "MIT"
+}

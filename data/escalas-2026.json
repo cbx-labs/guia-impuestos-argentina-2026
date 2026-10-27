@@ -1,0 +1,182 @@
+{
+  "meta": {
+    "titulo": "Guía y Calculadora Open-Source de Impuestos en Argentina 2026",
+    "version_datos": "2026-08",
+    "escala_desde": "agosto 2026",
+    "relevado": "2026-10-27",
+    "vigencia": "Escala de monotributo vigente desde agosto 2026 hasta la próxima actualización (febrero 2027).",
+    "actualizacion": "La escala se actualiza dos veces por año, en febrero y agosto (Ley 27.618, por IPC). La recategorización es en enero y julio, con ventana hasta el 5 de febrero y el 5 de agosto.",
+    "mantenido_por": "Contablix (https://contablix.ar)"
+  },
+  "monotributo": {
+    "fuente": "contablix.ar/calculadora-monotributo («Datos oficiales de ARCA»)",
+    "categorias": [
+      { "categoria": "A", "tope_ingresos": 12009410, "cuota_servicios": 49527, "cuota_bienes": 49527, "tope_alquileres": 2792886 },
+      { "categoria": "B", "tope_ingresos": 17595183, "cuota_servicios": 56379, "cuota_bienes": 56379, "tope_alquileres": 2792886 },
+      { "categoria": "C", "tope_ingresos": 24670494, "cuota_servicios": 66020, "cuota_bienes": 64531, "tope_alquileres": 3816944 },
+      { "categoria": "D", "tope_ingresos": 30628651, "cuota_servicios": 84613, "cuota_bienes": 82565, "tope_alquileres": 3816944 },
+      { "categoria": "E", "tope_ingresos": 36028231, "cuota_servicios": 119811, "cuota_bienes": 108268, "tope_alquileres": 4841003 },
+      { "categoria": "F", "tope_ingresos": 45151659, "cuota_servicios": 150784, "cuota_bienes": 129931, "tope_alquileres": 4841003 },
+      { "categoria": "G", "tope_ingresos": 53995799, "cuota_servicios": 230313, "cuota_bienes": 158815, "tope_alquileres": 5771965 },
+      { "categoria": "H", "tope_ingresos": 81924660, "cuota_servicios": 522707, "cuota_bienes": 317895, "tope_alquileres": 8378658 },
+      { "categoria": "I", "tope_ingresos": 91699762, "cuota_servicios": 963748, "cuota_bienes": 474993, "tope_alquileres": 8378658 },
+      { "categoria": "J", "tope_ingresos": 105012519, "cuota_servicios": 1167300, "cuota_bienes": 580794, "tope_alquileres": 8378658 },
+      { "categoria": "K", "tope_ingresos": 126610839, "cuota_servicios": 1614446, "cuota_bienes": 702103, "tope_alquileres": 8378658 }
+    ],
+    "textos": {
+      "composicion": "La cuota incluye impuesto integrado + aporte jubilatorio (SIPA) + obra social. Valores redondeados al peso.",
+      "exclusion": "Superar el tope de la categoría K es exclusión de pleno derecho: pasás a Responsable Inscripto (IVA + Ganancias).",
+      "otros_parametros": "La categoría también depende de la superficie afectada y la energía eléctrica consumida; esta calculadora modela ingresos brutos y, si lo informás, alquileres.",
+      "ingresos": "Ingresos brutos de los últimos 12 meses (lo facturado, incluida la exportación con Factura E)."
+    }
+  },
+  "iva": {
+    "fuente": "Ley de IVA",
+    "alicuotas": [
+      { "porcentaje": 21, "nombre": "General", "aplica": "La regla: la mayoría de las ventas de bienes y prestaciones de servicios." },
+      { "porcentaje": 10.5, "nombre": "Reducida", "aplica": "Ciertos bienes, construcción de vivienda, intereses y algunos alimentos." },
+      { "porcentaje": 27, "nombre": "Incrementada", "aplica": "Servicios públicos (luz, gas, agua, telecomunicaciones) prestados a Responsables Inscriptos y a sujetos que no son consumidores finales." }
+    ],
+    "exportacion_servicios": "La exportación de servicios va sin IVA; el Responsable Inscripto recupera el IVA de las compras vinculadas (art. 43 de la Ley de IVA).",
+    "comprobantes": [
+      { "tipo": "A", "emite": "Responsable Inscripto", "receptor": "Responsables Inscriptos y monotributistas (RG 5003)" },
+      { "tipo": "B", "emite": "Responsable Inscripto", "receptor": "Consumidores finales y exentos" },
+      { "tipo": "C", "emite": "Monotributista", "receptor": "Cualquier cliente del país (no discrimina IVA)" },
+      { "tipo": "E", "emite": "Responsable Inscripto o monotributista", "receptor": "Clientes del exterior (exportación)" }
+    ],
+    "identificacion_consumidor_final": { "norma": "RG 5700/2025", "desde_pesos": 10000000, "texto": "Sólo hay que identificar al consumidor final en operaciones desde $ 10.000.000." }
+  },
+  "responsable_inscripto": {
+    "fuente": "contablix.ar/impuestos-responsable-inscripto",
+    "ganancias": {
+      "escala_min_pct": 5,
+      "escala_max_pct": 35,
+      "texto": "Ganancias de persona humana: escala progresiva del 5 % al 35 % sobre la ganancia neta ANUAL, con anticipos. No se puede estimar con un mes de ventas: necesita la escala anual, deducciones y gastos del año."
+    },
+    "iibb": {
+      "texto": "Ingresos Brutos es provincial: servicios profesionales en CABA y PBA rondan el 3,5 % a 5 %; en el interior, entre 1 % y 4,5 %. Confirmá la alícuota de tu actividad y jurisdicción.",
+      "rangos": [
+        { "zona": "CABA y PBA (servicios profesionales)", "desde_pct": 3.5, "hasta_pct": 5 },
+        { "zona": "Interior", "desde_pct": 1, "hasta_pct": 4.5 }
+      ]
+    },
+    "autonomos": "Autónomos es un monto fijo mensual que depende de tu categoría: la calculadora lo toma como dato de entrada.",
+    "referencia_simulador": {
+      "ingresos_anuales_servicios": 20000000,
+      "carga_mensual_estimada": 760000,
+      "texto": "Según el simulador de Contablix, $ 20.000.000 anuales en servicios equivalen a una carga total estimada de unos $ 760.000 por mes. Es una referencia, no una regla."
+    }
+  },
+  "percepcion_iva_rg5319": {
+    "normas": "RG 5319/2023, modificada por RG 5794/2025 (desde el 1/12/2025)",
+    "agentes": "Plataformas de comercio electrónico como Mercado Libre.",
+    "condiciones": [
+      { "clave": "ri", "descripcion": "Responsable Inscripto sin incumplimientos", "porcentaje": 1 },
+      { "clave": "ri_ddjj_sin_presentar", "descripcion": "Responsable Inscripto con DDJJ sin presentar", "porcentaje": 3 },
+      { "clave": "ri_sin_dfe", "descripcion": "Responsable Inscripto sin domicilio fiscal electrónico", "porcentaje": 5 },
+      { "clave": "ri_limitado", "descripcion": "Responsable Inscripto con CUIT limitada, SIPER D o E, o factura M", "porcentaje": 7 },
+      { "clave": "mono_excedido", "descripcion": "Monotributista que excede los parámetros de su categoría", "porcentaje": 7 },
+      { "clave": "mono", "descripcion": "Monotributista dentro de parámetros (no sufre la percepción)", "porcentaje": 0 },
+      { "clave": "no_categorizado", "descripcion": "No categorizado con habitualidad", "porcentaje": 8 }
+    ],
+    "computo": "El Responsable Inscripto la computa en la DDJJ de IVA del período o de los cinco siguientes; si queda saldo a favor persistente, corresponde pedir el certificado de exclusión (RG 2226)."
+  },
+  "habitualidad_rg5794": { "norma": "RG 5794/2025", "operaciones_mes": 10, "operaciones_mes_cuatrimestre": 4, "monto_minimo_pesos": 750000, "monto_usados_uso_personal_pesos": 1500000, "texto": "Hay habitualidad (no categorizados) con 10 o más operaciones en el mes por $ 750.000 o más, o con 4 o más operaciones por mes durante un cuatrimestre por ese monto. Para bienes usados de uso personal, el umbral de monto es $ 1.500.000." },
+  "retenciones_iibb": {
+    "rg5554": { "norma": "RG 5554/2024 (BO 21/08/2024)", "texto": "Desde el 1/9/2024 no hay retenciones de IVA ni de Ganancias sobre cobros electrónicos (RG 5554/2024, que abrogó las RG 140, 4011 y 4622)." },
+    "sirtac": {
+      "organismo": "COMARB",
+      "alicuota_maxima_pct": 5,
+      "texto": "Retención de IIBB sobre cobros con tarjeta, QR y medios de pago liquidados. La alícuota sale del padrón mensual para tu CUIT (hasta 5 %)."
+    },
+    "sircupa": {
+      "organismo": "COMARB",
+      "texto": "Retención de IIBB sobre acreditaciones en cuentas de pago (CVU, por ejemplo Mercado Pago). No tiene mínimo nacional: depende del padrón. Quedan exceptuadas, entre otras, las transferencias entre cuentas propias, los sueldos y las transferencias del exterior.",
+      "adhesiones_pendientes": "Al 22/10/2026, CABA, Santa Fe y La Pampa anunciaron adhesión, sin norma ni fecha publicada."
+    },
+    "sircreb": {
+      "organismo": "COMARB",
+      "texto": "El equivalente sobre acreditaciones en cuentas bancarias (CBU)."
+    },
+    "pago_a_cuenta": "Todo lo retenido o percibido es pago a cuenta, no un costo: se computa en la DDJJ de IIBB (local o Convenio Multilateral, SIFERE WEB → «Carga de Deducciones») o en la de IVA en el caso de la percepción RG 5319.",
+    "devolucion_pba": "En PBA (ARBA RN 25/2025), ante una retención indebida tenés 90 días para pedir la devolución a la billetera.",
+    "convenio_multilateral": "Si vendés a varias provincias, IIBB va por Convenio Multilateral; la RG CA 5/2021 da sustento territorial en la provincia del comprador por presencia digital.",
+    "comisiones": "Las comisiones de Mercado Libre llevan IVA: son crédito fiscal para el Responsable Inscripto y costo para el monotributista.",
+    "base_calculo": "Base de cálculo simplificada: se aplica cada alícuota sobre el monto informado. La base exacta y si un mismo cobro sufre SIRTAC y SIRCUPA a la vez dependen del régimen, del medio de cobro y del agente; si un régimen no te alcanza, poné su alícuota en 0."
+  },
+  "factura_e": {
+    "fuente": "contablix.ar/blog/factura-e-exportacion-servicios-2026 (revisado al 14/10/2026)",
+    "definicion": "Exportación de servicios = el servicio se utiliza o explota efectivamente en el exterior. No alcanza con que el cliente sea extranjero.",
+    "tipo_cambio": "Tipo de cambio vendedor divisa del Banco Nación del día hábil cambiario anterior (RG 5616/2024); Comprobantes en línea lo completa solo.",
+    "punto_de_venta": "Necesitás un punto de venta específico de exportación (o WSFEX si facturás por web service).",
+    "monotributo": "El monotributista puede emitir Factura E; lo exportado SUMA a los ingresos brutos que definen la categoría.",
+    "responsable_inscripto": "Como Responsable Inscripto, la exportación de servicios va sin IVA y recuperás el IVA de las compras vinculadas (art. 43).",
+    "tope_historico": {
+      "monto_usd": 36000,
+      "vigente": false,
+      "texto": "Dato histórico: hasta septiembre de 2025 existía un tope de USD 36.000 anuales para que las personas humanas no liquidaran sus cobros de exportación de servicios. La Com. BCRA «A» 8330 (18/9/2025) lo eliminó: hoy no hay tope."
+    },
+    "regla_cambiaria": {
+      "humana": {
+        "normas": "Com. BCRA «A» 8330, «A» 8417 y «A» 8116",
+        "texto": "Persona humana: no estás obligada a liquidar (pesificar) los cobros de exportación de servicios, sin límite de monto (Com. «A» 8330 del 18/9/2025; la Com. «A» 8417 del 9/4/2026 extendió la excepción a todos los conceptos de servicios). Condición: acreditarlos en una cuenta en moneda extranjera a tu nombre en una entidad local dentro de los 20 días hábiles del cobro (Com. «A» 8116). El banco no puede cobrarte comisión por esa acreditación (sólo trasladar cargos de bancos del exterior)."
+      },
+      "sociedad": {
+        "normas": "Com. BCRA «A» 8137",
+        "texto": "Sociedad: sigue obligada a ingresar y liquidar los cobros en el Mercado Libre de Cambios dentro de los 20 días hábiles (Com. «A» 8137)."
+      }
+    },
+    "bienes": "Para exportación de bienes rigen otras reglas aduaneras y cambiarias que esta calculadora no modela.",
+    "sociedad_monotributo": "Las sociedades no pueden ser monotributistas: para una sociedad usá --condicion ri."
+  },
+  "links": {
+    "home": {
+      "url": "https://contablix.ar",
+      "anchor": "Estudio contable online para e-commerce, freelancers y empresas digitales"
+    },
+    "monotributo": {
+      "url": "https://contablix.ar/calculadora-monotributo",
+      "anchor": "Calculadora y simulador de monotributo 2026"
+    },
+    "responsable_inscripto": {
+      "url": "https://contablix.ar/impuestos-responsable-inscripto",
+      "anchor": "Simulador de impuestos Responsable Inscripto 2026"
+    },
+    "ecommerce": {
+      "url": "https://contablix.ar/servicios/consultoria-ecommerce",
+      "anchor": "Consultoría impositiva para e-commerce"
+    },
+    "freelancers": {
+      "url": "https://contablix.ar/servicios/freelancers-contractors",
+      "anchor": "Contador para freelancers y contractors que exportan servicios"
+    },
+    "importadores": {
+      "url": "https://contablix.ar/servicios/importadores",
+      "anchor": "Asesoramiento impositivo para importadores"
+    },
+    "pacioli": {
+      "url": "https://pacioli.ar",
+      "anchor": "Software contable con IA para estudios contables en Argentina"
+    }
+  },
+  "fuentes": [
+    { "norma": "Ley 27.618", "tema": "Monotributo: actualización semestral de la escala por IPC (febrero y agosto)" },
+    { "norma": "Ley de IVA (art. 43)", "tema": "Alícuotas 21 %, 10,5 % y 27 %; recupero del IVA de compras vinculadas a exportaciones" },
+    { "norma": "RG 5003", "tema": "Factura A a monotributistas" },
+    { "norma": "RG 5700/2025", "tema": "Identificación del consumidor final desde $ 10.000.000 por operación" },
+    { "norma": "RG 5554/2024", "tema": "Fin de las retenciones de IVA y Ganancias sobre cobros electrónicos (abrogó RG 140, 4011 y 4622)" },
+    { "norma": "RG 5319/2023", "tema": "Percepción de IVA en plataformas de comercio electrónico" },
+    { "norma": "RG 5794/2025", "tema": "Nuevas alícuotas de la RG 5319 y criterios de habitualidad (desde el 1/12/2025)" },
+    { "norma": "RG 2226", "tema": "Certificado de exclusión de percepciones de IVA" },
+    { "norma": "SIRTAC (COMARB)", "tema": "Retención de IIBB sobre tarjetas, QR y medios de pago" },
+    { "norma": "SIRCUPA (COMARB)", "tema": "Retención de IIBB sobre acreditaciones en cuentas de pago (CVU)" },
+    { "norma": "SIRCREB (COMARB)", "tema": "Retención de IIBB sobre acreditaciones bancarias (CBU)" },
+    { "norma": "ARBA RN 25/2025", "tema": "Devolución de retenciones indebidas en billeteras (90 días)" },
+    { "norma": "RG CA 5/2021 (Comisión Arbitral)", "tema": "Sustento territorial por presencia digital en Convenio Multilateral" },
+    { "norma": "RG 5616/2024", "tema": "Tipo de cambio para Factura E" },
+    { "norma": "Com. BCRA «A» 8116", "tema": "Acreditación en cuenta en moneda extranjera dentro de los 20 días hábiles" },
+    { "norma": "Com. BCRA «A» 8137", "tema": "Obligación de liquidar para sociedades" },
+    { "norma": "Com. BCRA «A» 8330", "tema": "Eliminación del tope de USD 36.000 para personas humanas (18/9/2025)" },
+    { "norma": "Com. BCRA «A» 8417", "tema": "Extensión de la excepción a todos los conceptos de servicios (9/4/2026)" }
+  ]
+}
