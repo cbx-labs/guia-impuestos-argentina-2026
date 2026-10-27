@@ -39,7 +39,7 @@ Lo mantiene [Contablix, estudio contable online para e-commerce, freelancers y e
 No hay nada que instalar: cloná el repo y corré cualquiera de los dos CLIs.
 
 ```bash
-git clone <url-del-repo> guia-impuestos-argentina-2026
+git clone https://github.com/cbx-labs/guia-impuestos-argentina-2026.git
 cd guia-impuestos-argentina-2026
 
 # Python 3.9+

@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Impuestos en Argentina 2026: monotributo, IVA, retenciones y Factura E — guía open-source</title>
+<meta name="description" content="Tablas impositivas 2026: escala de monotributo vigente desde agosto 2026, alícuotas de IVA, retenciones e-commerce (SIRTAC, SIRCUPA, RG 5319) y Factura E sin tope de USD 36.000.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://cbx-labs.github.io/guia-impuestos-argentina-2026/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<meta property="og:title" content="Impuestos en Argentina 2026: monotributo, IVA, retenciones y Factura E — guía open-source">
+<meta property="og:description" content="Tablas impositivas 2026: escala de monotributo vigente desde agosto 2026, alícuotas de IVA, retenciones e-commerce (SIRTAC, SIRCUPA, RG 5319) y Factura E sin tope de USD 36.000.">
+<meta property="og:url" content="https://cbx-labs.github.io/guia-impuestos-argentina-2026/">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "Guía y Calculadora Open-Source de Impuestos en Argentina 2026", "description": "Tablas impositivas 2026: escala de monotributo vigente desde agosto 2026, alícuotas de IVA, retenciones e-commerce (SIRTAC, SIRCUPA, RG 5319) y Factura E sin tope de USD 36.000.", "url": "https://cbx-labs.github.io/guia-impuestos-argentina-2026/", "codeRepository": "https://github.com/cbx-labs/guia-impuestos-argentina-2026", "programmingLanguage": ["Python", "JavaScript"], "license": "https://opensource.org/licenses/MIT", "inLanguage": "es-AR", "dateModified": "2026-10-27", "author": {"@type": "Organization", "name": "Contablix", "url": "https://contablix.ar"}}</script>
+<style>
+:root{--fg:#0f172a;--fg2:#475569;--fg3:#64748b;--bg:#fff;--bg2:#f8fafc;--linea:#e2e8f0;--acento:#4f46e5}
+@media (prefers-color-scheme:dark){:root{--fg:#e2e8f0;--fg2:#a8b3c4;--fg3:#8b97a8;--bg:#0b0f17;--bg2:#111827;--linea:#1f2937;--acento:#a5b4fc}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+main{max-width:860px;margin:0 auto;padding:56px 20px 72px}
+header p.rotulo{margin:0 0 8px;color:var(--fg3);font-size:14px;letter-spacing:.02em}
+h1{margin:0 0 16px;font-size:clamp(28px,5vw,42px);line-height:1.12;letter-spacing:-.02em}
+h2{margin:56px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--linea);font-size:24px;letter-spacing:-.01em}
+h3{margin:28px 0 8px;font-size:18px}
+p,li{color:var(--fg2)}
+strong{color:var(--fg)}
+a{color:var(--acento);text-underline-offset:3px}
+.bajada{font-size:19px}
+.aviso{margin:24px 0;padding:14px 16px;border:1px solid var(--linea);border-radius:10px;background:var(--bg2);font-size:15px}
+nav.indice ul{display:flex;flex-wrap:wrap;gap:8px 16px;margin:24px 0 0;padding:0;list-style:none;font-size:15px}
+.tabla{overflow-x:auto;margin:16px 0;border:1px solid var(--linea);border-radius:10px}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{padding:9px 12px;border-bottom:1px solid var(--linea);text-align:left;vertical-align:top}
+th{background:var(--bg2);color:var(--fg);font-weight:600}
+td{color:var(--fg2);font-variant-numeric:tabular-nums}
+tr:last-child td{border-bottom:0}
+pre{overflow-x:auto;padding:14px 16px;border-radius:10px;background:var(--bg2);border:1px solid var(--linea);font-size:14px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+ul.recursos{padding-left:20px}
+ul.recursos li{margin:6px 0}
+footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--linea);color:var(--fg3);font-size:14px}
+footer p{color:var(--fg3)}
+</style>
+</head>
+<body>
+<main>
+<header>
+<p class="rotulo">Guía open-source · datos relevados al 27/10/2026</p>
+<h1>Impuestos en Argentina 2026: tablas de monotributo, IVA, retenciones y Factura E</h1>
+<p class="bajada">Las cifras y reglas que necesitás si vendés por internet, facturás como freelancer o exportás servicios, en un solo lugar y con su fuente. Es la versión web del repositorio <a href="https://github.com/cbx-labs/guia-impuestos-argentina-2026">guia-impuestos-argentina-2026</a>, que incluye una calculadora de línea de comandos en Python y Node.js.</p>
+<p class="aviso"><strong>Escala vigente:</strong> monotributo desde agosto 2026. La escala se actualiza dos veces por año, en febrero y agosto (Ley 27.618, por IPC). La recategorización es en enero y julio, con ventana hasta el 5 de febrero y el 5 de agosto.</p>
+<nav class="indice" aria-label="Índice"><ul>
+<li><a href="#monotributo">Monotributo</a></li>
+<li><a href="#iva">IVA y comprobantes</a></li>
+<li><a href="#retenciones">Retenciones e-commerce</a></li>
+<li><a href="#factura-e">Factura E</a></li>
+<li><a href="#calculadora">Calculadora CLI</a></li>
+<li><a href="#recursos">Recursos</a></li>
+</ul></nav>
+</header>
+
+<section id="monotributo">
+<h2>Monotributo 2026: categorías A a K</h2>
+<p>Escala vigente desde agosto 2026. La cuota incluye impuesto integrado + aporte jubilatorio (SIPA) + obra social. Valores redondeados al peso. Ingresos brutos de los últimos 12 meses (lo facturado, incluida la exportación con Factura E).</p>
+<div class="tabla"><table>
+<thead><tr><th>Cat.</th><th>Ingresos brutos anuales (tope)</th><th>Cuota servicios</th><th>Cuota bienes</th><th>Alquileres anuales (tope)</th></tr></thead>
+<tbody>
+<tr><td>A</td><td>$ 12.009.410</td><td>$ 49.527</td><td>$ 49.527</td><td>$ 2.792.886</td></tr>
+<tr><td>B</td><td>$ 17.595.183</td><td>$ 56.379</td><td>$ 56.379</td><td>$ 2.792.886</td></tr>
+<tr><td>C</td><td>$ 24.670.494</td><td>$ 66.020</td><td>$ 64.531</td><td>$ 3.816.944</td></tr>
+<tr><td>D</td><td>$ 30.628.651</td><td>$ 84.613</td><td>$ 82.565</td><td>$ 3.816.944</td></tr>
+<tr><td>E</td><td>$ 36.028.231</td><td>$ 119.811</td><td>$ 108.268</td><td>$ 4.841.003</td></tr>
+<tr><td>F</td><td>$ 45.151.659</td><td>$ 150.784</td><td>$ 129.931</td><td>$ 4.841.003</td></tr>
+<tr><td>G</td><td>$ 53.995.799</td><td>$ 230.313</td><td>$ 158.815</td><td>$ 5.771.965</td></tr>
+<tr><td>H</td><td>$ 81.924.660</td><td>$ 522.707</td><td>$ 317.895</td><td>$ 8.378.658</td></tr>
+<tr><td>I</td><td>$ 91.699.762</td><td>$ 963.748</td><td>$ 474.993</td><td>$ 8.378.658</td></tr>
+<tr><td>J</td><td>$ 105.012.519</td><td>$ 1.167.300</td><td>$ 580.794</td><td>$ 8.378.658</td></tr>
+<tr><td>K</td><td>$ 126.610.839</td><td>$ 1.614.446</td><td>$ 702.103</td><td>$ 8.378.658</td></tr>
+</tbody></table></div>
+<p>Superar el tope de la categoría K es exclusión de pleno derecho: pasás a Responsable Inscripto (IVA + Ganancias). El tope de la categoría K es <strong>$ 126.610.839</strong> anuales. La categoría también depende de la superficie afectada y la energía eléctrica consumida; esta calculadora modela ingresos brutos y, si lo informás, alquileres.</p>
+<p>Para simular tu categoría con más variables: <a href="https://contablix.ar/calculadora-monotributo">Calculadora y simulador de monotributo 2026</a>.</p>
+</section>
+
+<section id="iva">
+<h2>IVA: alícuotas y tipos de comprobante</h2>
+<div class="tabla"><table>
+<thead><tr><th>Alícuota</th><th>Tipo</th><th>Cuándo aplica</th></tr></thead>
+<tbody>
+<tr><td>21 %</td><td>General</td><td>La regla: la mayoría de las ventas de bienes y prestaciones de servicios.</td></tr>
+<tr><td>10,5 %</td><td>Reducida</td><td>Ciertos bienes, construcción de vivienda, intereses y algunos alimentos.</td></tr>
+<tr><td>27 %</td><td>Incrementada</td><td>Servicios públicos (luz, gas, agua, telecomunicaciones) prestados a Responsables Inscriptos y a sujetos que no son consumidores finales.</td></tr>
+</tbody></table></div>
+<p>La exportación de servicios va sin IVA; el Responsable Inscripto recupera el IVA de las compras vinculadas (art. 43 de la Ley de IVA).</p>
+<h3>Factura A, B, C y E</h3>
+<div class="tabla"><table>
+<thead><tr><th>Comprobante</th><th>Lo emite</th><th>A quién</th></tr></thead>
+<tbody>
+<tr><td>Factura A</td><td>Responsable Inscripto</td><td>Responsables Inscriptos y monotributistas (RG 5003)</td></tr>
+<tr><td>Factura B</td><td>Responsable Inscripto</td><td>Consumidores finales y exentos</td></tr>
+<tr><td>Factura C</td><td>Monotributista</td><td>Cualquier cliente del país (no discrimina IVA)</td></tr>
+<tr><td>Factura E</td><td>Responsable Inscripto o monotributista</td><td>Clientes del exterior (exportación)</td></tr>
+</tbody></table></div>
+<p>Sólo hay que identificar al consumidor final en operaciones desde $ 10.000.000. (RG 5700/2025)</p>
+<h3>Responsable Inscripto</h3>
+<p>Ganancias de persona humana: escala progresiva del 5 % al 35 % sobre la ganancia neta ANUAL, con anticipos. No se puede estimar con un mes de ventas: necesita la escala anual, deducciones y gastos del año. Ingresos Brutos es provincial: servicios profesionales en CABA y PBA rondan el 3,5 % a 5 %; en el interior, entre 1 % y 4,5 %. Confirmá la alícuota de tu actividad y jurisdicción. Autónomos es un monto fijo mensual que depende de tu categoría: la calculadora lo toma como dato de entrada.</p>
+<p>Para comparar contra el monotributo: <a href="https://contablix.ar/impuestos-responsable-inscripto">Simulador de impuestos Responsable Inscripto 2026</a>.</p>
+</section>
+
+<section id="retenciones">
+<h2>Retenciones y percepciones en e-commerce</h2>
+<p>Desde el 1/9/2024 no hay retenciones de IVA ni de Ganancias sobre cobros electrónicos (RG 5554/2024, que abrogó las RG 140, 4011 y 4622).</p>
+<h3>SIRTAC, SIRCUPA y SIRCREB (Ingresos Brutos)</h3>
+<ul>
+<li><strong>SIRTAC (COMARB):</strong> Retención de IIBB sobre cobros con tarjeta, QR y medios de pago liquidados. La alícuota sale del padrón mensual para tu CUIT (hasta 5 %).</li>
+<li><strong>SIRCUPA (COMARB):</strong> Retención de IIBB sobre acreditaciones en cuentas de pago (CVU, por ejemplo Mercado Pago). No tiene mínimo nacional: depende del padrón. Quedan exceptuadas, entre otras, las transferencias entre cuentas propias, los sueldos y las transferencias del exterior. Al 22/10/2026, CABA, Santa Fe y La Pampa anunciaron adhesión, sin norma ni fecha publicada.</li>
+<li><strong>SIRCREB (COMARB):</strong> El equivalente sobre acreditaciones en cuentas bancarias (CBU).</li>
+</ul>
+<h3>Percepción de IVA en plataformas: RG 5319/2023, modificada por RG 5794/2025 (desde el 1/12/2025)</h3>
+<p>Agentes: Plataformas de comercio electrónico como Mercado Libre.</p>
+<div class="tabla"><table>
+<thead><tr><th>Condición frente a IVA</th><th>Percepción</th></tr></thead>
+<tbody>
+<tr><td>Responsable Inscripto sin incumplimientos</td><td>1 %</td></tr>
+<tr><td>Responsable Inscripto con DDJJ sin presentar</td><td>3 %</td></tr>
+<tr><td>Responsable Inscripto sin domicilio fiscal electrónico</td><td>5 %</td></tr>
+<tr><td>Responsable Inscripto con CUIT limitada, SIPER D o E, o factura M</td><td>7 %</td></tr>
+<tr><td>Monotributista que excede los parámetros de su categoría</td><td>7 %</td></tr>
+<tr><td>Monotributista dentro de parámetros (no sufre la percepción)</td><td>0 %</td></tr>
+<tr><td>No categorizado con habitualidad</td><td>8 %</td></tr>
+</tbody></table></div>
+<p>Hay habitualidad (no categorizados) con 10 o más operaciones en el mes por $ 750.000 o más, o con 4 o más operaciones por mes durante un cuatrimestre por ese monto. Para bienes usados de uso personal, el umbral de monto es $ 1.500.000.</p>
+<p>Todo lo retenido o percibido es pago a cuenta, no un costo: se computa en la DDJJ de IIBB (local o Convenio Multilateral, SIFERE WEB → «Carga de Deducciones») o en la de IVA en el caso de la percepción RG 5319. El Responsable Inscripto la computa en la DDJJ de IVA del período o de los cinco siguientes; si queda saldo a favor persistente, corresponde pedir el certificado de exclusión (RG 2226).</p>
+<p>Si vendés a varias provincias, IIBB va por Convenio Multilateral; la RG CA 5/2021 da sustento territorial en la provincia del comprador por presencia digital. Si vendés por Mercado Libre, Tiendanube o tu propia tienda: <a href="https://contablix.ar/servicios/consultoria-ecommerce">Consultoría impositiva para e-commerce</a>.</p>
+</section>
+
+<section id="factura-e">
+<h2>Factura E y exportación de servicios</h2>
+<p><strong>Desde la Com. BCRA «A» 8330 ya no hay tope de USD 36.000</strong>. Dato histórico: hasta septiembre de 2025 existía un tope de USD 36.000 anuales para que las personas humanas no liquidaran sus cobros de exportación de servicios. La Com. BCRA «A» 8330 (18/9/2025) lo eliminó: hoy no hay tope.</p>
+<ul>
+<li>Persona humana: no estás obligada a liquidar (pesificar) los cobros de exportación de servicios, sin límite de monto (Com. «A» 8330 del 18/9/2025; la Com. «A» 8417 del 9/4/2026 extendió la excepción a todos los conceptos de servicios). Condición: acreditarlos en una cuenta en moneda extranjera a tu nombre en una entidad local dentro de los 20 días hábiles del cobro (Com. «A» 8116). El banco no puede cobrarte comisión por esa acreditación (sólo trasladar cargos de bancos del exterior).</li>
+<li>Sociedad: sigue obligada a ingresar y liquidar los cobros en el Mercado Libre de Cambios dentro de los 20 días hábiles (Com. «A» 8137).</li>
+<li>Exportación de servicios = el servicio se utiliza o explota efectivamente en el exterior. No alcanza con que el cliente sea extranjero.</li>
+<li>Tipo de cambio vendedor divisa del Banco Nación del día hábil cambiario anterior (RG 5616/2024); Comprobantes en línea lo completa solo. Necesitás un punto de venta específico de exportación (o WSFEX si facturás por web service).</li>
+<li>El monotributista puede emitir Factura E; lo exportado SUMA a los ingresos brutos que definen la categoría. Como Responsable Inscripto, la exportación de servicios va sin IVA y recuperás el IVA de las compras vinculadas (art. 43).</li>
+</ul>
+<p>Si trabajás para clientes del exterior: <a href="https://contablix.ar/servicios/freelancers-contractors">Contador para freelancers y contractors que exportan servicios</a>. Si importás mercadería para revender: <a href="https://contablix.ar/servicios/importadores">Asesoramiento impositivo para importadores</a>.</p>
+</section>
+
+<section id="calculadora">
+<h2>Calculadora de línea de comandos (Python y Node.js)</h2>
+<p>Sin dependencias. Los dos CLIs leen el mismo archivo de datos y dan los mismos números.</p>
+<pre><code>git clone https://github.com/cbx-labs/guia-impuestos-argentina-2026.git
+cd guia-impuestos-argentina-2026
+python3 calculadora_impuestos_ar.py monotributo --ingresos 30000000 --actividad servicios
+node index.js retenciones --monto 1000000 --condicion ri --alicuota-sirtac 1.5</code></pre>
+<p>Documentación completa, pruebas y dataset en <a href="https://github.com/cbx-labs/guia-impuestos-argentina-2026">GitHub</a>.</p>
+</section>
+
+<section id="recursos">
+<h2>Recursos de Contablix y Pacioli</h2>
+<ul class="recursos">
+<li><a href="https://contablix.ar">Contablix — Estudio contable online para e-commerce, freelancers y empresas digitales</a></li>
+<li><a href="https://contablix.ar/calculadora-monotributo">Calculadora y simulador de monotributo 2026</a></li>
+<li><a href="https://contablix.ar/impuestos-responsable-inscripto">Calculadora y simulador de Responsable Inscripto 2026</a></li>
+<li><a href="https://contablix.ar/servicios/consultoria-ecommerce">Consultoría contable e impositiva para e-commerce</a></li>
+<li><a href="https://contablix.ar/servicios/freelancers-contractors">Contabilidad para freelancers y exportadores de servicios</a></li>
+<li><a href="https://contablix.ar/servicios/importadores">Contabilidad e impuestos para importadores</a></li>
+<li><a href="https://pacioli.ar">Pacioli — Software contable con IA para estudios contables en Argentina</a></li>
+</ul>
+</section>
+
+<section id="fuentes">
+<h2>Fuentes normativas</h2>
+<ul>
+<li><strong>Ley 27.618</strong>: Monotributo: actualización semestral de la escala por IPC (febrero y agosto)</li>
+<li><strong>Ley de IVA (art. 43)</strong>: Alícuotas 21 %, 10,5 % y 27 %; recupero del IVA de compras vinculadas a exportaciones</li>
+<li><strong>RG 5003</strong>: Factura A a monotributistas</li>
+<li><strong>RG 5700/2025</strong>: Identificación del consumidor final desde $ 10.000.000 por operación</li>
+<li><strong>RG 5554/2024</strong>: Fin de las retenciones de IVA y Ganancias sobre cobros electrónicos (abrogó RG 140, 4011 y 4622)</li>
+<li><strong>RG 5319/2023</strong>: Percepción de IVA en plataformas de comercio electrónico</li>
+<li><strong>RG 5794/2025</strong>: Nuevas alícuotas de la RG 5319 y criterios de habitualidad (desde el 1/12/2025)</li>
+<li><strong>RG 2226</strong>: Certificado de exclusión de percepciones de IVA</li>
+<li><strong>SIRTAC (COMARB)</strong>: Retención de IIBB sobre tarjetas, QR y medios de pago</li>
+<li><strong>SIRCUPA (COMARB)</strong>: Retención de IIBB sobre acreditaciones en cuentas de pago (CVU)</li>
+<li><strong>SIRCREB (COMARB)</strong>: Retención de IIBB sobre acreditaciones bancarias (CBU)</li>
+<li><strong>ARBA RN 25/2025</strong>: Devolución de retenciones indebidas en billeteras (90 días)</li>
+<li><strong>RG CA 5/2021 (Comisión Arbitral)</strong>: Sustento territorial por presencia digital en Convenio Multilateral</li>
+<li><strong>RG 5616/2024</strong>: Tipo de cambio para Factura E</li>
+<li><strong>Com. BCRA «A» 8116</strong>: Acreditación en cuenta en moneda extranjera dentro de los 20 días hábiles</li>
+<li><strong>Com. BCRA «A» 8137</strong>: Obligación de liquidar para sociedades</li>
+<li><strong>Com. BCRA «A» 8330</strong>: Eliminación del tope de USD 36.000 para personas humanas (18/9/2025)</li>
+<li><strong>Com. BCRA «A» 8417</strong>: Extensión de la excepción a todos los conceptos de servicios (9/4/2026)</li>
+</ul>
+</section>
+
+<footer>
+<p>Material informativo y educativo: no constituye asesoramiento impositivo ni contable. Las cifras son estimaciones según la normativa vigente a la fecha indicada; consultá a tu contador antes de decidir.</p>
+<p>Mantenido por <a href="https://contablix.ar">Contablix</a>, estudio contable online fundado en 2020. Fundador: Cr. Francisco Guillermo Ramírez, Contador Público (UNCuyo) y Master in Laws en Derecho Tributario (UTDT). Licencia MIT.</p>
+</footer>
+</main>
+</body>
+</html>
