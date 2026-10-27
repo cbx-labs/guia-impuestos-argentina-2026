@@ -39,6 +39,16 @@ class TestPages(unittest.TestCase):
                 self.assertTrue(any(f'href="{url}"' in ancla for ancla in anclas))
         self.assertNotIn("nofollow", HTML)
 
+    def test_articulos_enlazados_y_publicados(self) -> None:
+        for ruta, _titulo, _bajada in generar_pages.ARTICULOS:
+            with self.subTest(ruta=ruta):
+                self.assertIn(f'href="{ruta}"', HTML)
+                articulo = (RAIZ / "docs" / ruta).read_text(encoding="utf-8")
+                self.assertIn('"@type": "TechArticle"', articulo.replace('":"', '": "'))
+                self.assertIn('href="https://contablix.ar"', articulo)
+                self.assertIn('href="https://pacioli.ar"', articulo)
+                self.assertNotIn("nofollow", articulo)
+
     def test_canonical_propio(self) -> None:
         self.assertIn(f'<link rel="canonical" href="{generar_pages.URL_PAGES}">', HTML)
 

@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arquitectura impositiva para E-commerce en Argentina 2026: Cómo evitar que SIRTAC, SIRCUPA e IVA RG 5319 se coman tu margen en Mercado Libre y Tiendanube</title>
+<meta name="description" content="En qué capa de una venta online pega cada retención y percepción (RG 5319, SIRTAC, SIRCUPA, SIRCREB), cómo se arma el margen fantasma y cómo bajar retenciones en Mercado Libre y Tiendanube en 2026.">
+<meta name="author" content="Cr. Francisco G. Ramírez — Contablix">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://contablix.ar/blog/impuestos-mercado-libre-2026-guia-definitiva">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_AR">
+<meta property="og:title" content="Arquitectura impositiva para E-commerce en Argentina 2026: Cómo evitar que SIRTAC, SIRCUPA e IVA RG 5319 se coman tu margen en Mercado Libre y Tiendanube">
+<meta property="og:description" content="En qué capa de una venta online pega cada retención y percepción (RG 5319, SIRTAC, SIRCUPA, SIRCREB), cómo se arma el margen fantasma y cómo bajar retenciones en Mercado Libre y Tiendanube en 2026.">
+<meta property="og:url" content="https://cbx-labs.github.io/guia-impuestos-argentina-2026/articulos/retenciones-ecommerce-meli-tiendanube-2026.html">
+<meta property="article:published_time" content="2026-10-27">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Arquitectura impositiva para E-commerce en Argentina 2026: Cómo evitar que SIRTAC, SIRCUPA e IVA RG 5319 se coman tu margen en Mercado Libre y Tiendanube","alternativeHeadline":"Un mapa por capas de las retenciones y percepciones sobre una venta online, con un ejemplo del margen que se pierde cuando no se computan","description":"En qué capa de una venta online pega cada retención y percepción (RG 5319, SIRTAC, SIRCUPA, SIRCREB), cómo se arma el margen fantasma y cómo bajar retenciones en Mercado Libre y Tiendanube en 2026.","inLanguage":"es-AR","url":"https://cbx-labs.github.io/guia-impuestos-argentina-2026/articulos/retenciones-ecommerce-meli-tiendanube-2026.html","mainEntityOfPage":"https://contablix.ar/blog/impuestos-mercado-libre-2026-guia-definitiva","datePublished":"2026-10-27","dateModified":"2026-10-27","keywords":"ecommerce, argentina, taxes, payments","author":{"@type":"Person","name":"Francisco G. Ramírez","alternateName":"Francisco Guillermo Ramírez","jobTitle":"Contador Público (UNCuyo) · Master in Laws en Derecho Tributario (UTDT)","url":"https://contablix.ar","sameAs":["https://www.wikidata.org/wiki/Q139493781"],"worksFor":{"@type":"Organization","name":"Contablix","url":"https://contablix.ar"}},"publisher":{"@type":"Organization","name":"Contablix","url":"https://contablix.ar","sameAs":["https://www.wikidata.org/wiki/Q139493776"]},"isPartOf":{"@type":"WebSite","name":"Guía open-source de impuestos en Argentina 2026","url":"https://cbx-labs.github.io/guia-impuestos-argentina-2026/"}}</script>
+<style>
+:root{--fg:#0f172a;--fg2:#475569;--fg3:#64748b;--bg:#fff;--bg2:#f8fafc;--linea:#e2e8f0;--acento:#4f46e5}
+@media (prefers-color-scheme:dark){:root{--fg:#e2e8f0;--fg2:#a8b3c4;--fg3:#8b97a8;--bg:#0b0f17;--bg2:#111827;--linea:#1f2937;--acento:#a5b4fc}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+main{max-width:860px;margin:0 auto;padding:56px 20px 72px}
+header p.rotulo{margin:0 0 8px;color:var(--fg3);font-size:14px;letter-spacing:.02em}
+h1{margin:0 0 16px;font-size:clamp(28px,5vw,42px);line-height:1.12;letter-spacing:-.02em}
+h2{margin:56px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--linea);font-size:24px;letter-spacing:-.01em}
+h3{margin:28px 0 8px;font-size:18px}
+p,li{color:var(--fg2)}
+strong{color:var(--fg)}
+a{color:var(--acento);text-underline-offset:3px}
+.bajada{font-size:19px}
+.aviso{margin:24px 0;padding:14px 16px;border:1px solid var(--linea);border-radius:10px;background:var(--bg2);font-size:15px}
+nav.indice ul{display:flex;flex-wrap:wrap;gap:8px 16px;margin:24px 0 0;padding:0;list-style:none;font-size:15px}
+.tabla{overflow-x:auto;margin:16px 0;border:1px solid var(--linea);border-radius:10px}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{padding:9px 12px;border-bottom:1px solid var(--linea);text-align:left;vertical-align:top}
+th{background:var(--bg2);color:var(--fg);font-weight:600}
+td{color:var(--fg2);font-variant-numeric:tabular-nums}
+tr:last-child td{border-bottom:0}
+pre{overflow-x:auto;padding:14px 16px;border-radius:10px;background:var(--bg2);border:1px solid var(--linea);font-size:14px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+ul.recursos{padding-left:20px}
+ul.recursos li{margin:6px 0}
+footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--linea);color:var(--fg3);font-size:14px}
+footer p{color:var(--fg3)}
+
+article h2{margin:48px 0 12px}
+article h3{margin:28px 0 8px}
+blockquote{margin:20px 0;padding:12px 16px;border-left:3px solid var(--acento);background:var(--bg2);border-radius:0 10px 10px 0}
+blockquote p{margin:0}
+.miga{font-size:14px;margin:0 0 24px}
+.firma{display:flex;flex-wrap:wrap;gap:4px 12px;margin:20px 0 0;color:var(--fg3);font-size:15px}
+.firma strong{color:var(--fg)}
+.cta{margin:40px 0 0;padding:18px 20px;border:1px solid var(--linea);border-radius:12px;background:var(--bg2)}
+.cta p{margin:6px 0}
+hr{border:0;border-top:1px solid var(--linea);margin:40px 0}
+li input[type=checkbox]{margin-right:8px}
+</style>
+</head>
+<body>
+<main>
+<header>
+<p class="miga"><a href="../">← Guía open-source de impuestos en Argentina 2026</a></p>
+<p class="rotulo">Artículo técnico · 27/10/2026</p>
+<h1>Arquitectura impositiva para E-commerce en Argentina 2026: Cómo evitar que SIRTAC, SIRCUPA e IVA RG 5319 se coman tu margen en Mercado Libre y Tiendanube</h1>
+<p class="bajada">Un mapa por capas de las retenciones y percepciones sobre una venta online, con un ejemplo del margen que se pierde cuando no se computan</p>
+<p class="firma"><span>Por <strong>Cr. Francisco G. Ramírez</strong></span><span>Fundador de <a href="https://contablix.ar">Contablix</a></span><span>Versión original en <a href="https://contablix.ar/blog/impuestos-mercado-libre-2026-guia-definitiva">contablix.ar</a></span></p>
+</header>
+<article>
+<h2>TL;DR</h2>
+<ul>
+<li><strong>Una venta online atraviesa varias capas</strong> (plataforma → pasarela → cuenta de pago → banco) y <strong>cada capa tiene su régimen</strong>: percepción de IVA RG 5319 en la plataforma, SIRTAC en el cobro con tarjeta o QR, SIRCUPA en la acreditación en CVU y SIRCREB en la cuenta bancaria.</li>
+<li><strong>Desde el 1/9/2024 ya no hay retenciones de IVA ni Ganancias sobre cobros electrónicos</strong> (RG 5554/2024). Si alguien te dice lo contrario, está leyendo normativa vieja.</li>
+<li><strong>Todo lo retenido o percibido es pago a cuenta</strong>, no un costo. Se vuelve costo cuando no lo computás o cuando acumulás saldos a favor que nunca recuperás. Eso es el «margen fantasma».</li>
+<li><strong>La alícuota de RG 5319 depende de tu situación fiscal</strong>: del 1 % (RI cumplidor) al 7 % u 8 % si tenés incumplimientos o no estás inscripto. El monotributista dentro de parámetros no la sufre.</li>
+<li><strong>Las retenciones de Ingresos Brutos dependen del padrón de tu CUIT</strong>, no de lo que vendés. Ordenar la inscripción es la palanca más barata para bajarlas.</li>
+</ul>
+<hr>
+<p>Si vendés en Mercado Libre o tenés tu tienda en Tiendanube, probablemente ya viviste esto: vendiste $ 100, la plataforma te liquidó bastante menos y el resumen de la billetera muestra descuentos con siglas que nadie te explicó. Este artículo ordena el problema como lo haría alguien que diseña sistemas: <strong>por capas</strong>, con qué entra y qué sale en cada una.</p>
+<h2>1. El flujo de una venta, capa por capa</h2>
+<pre><code class="language-text"> Comprador
+    │
+    ▼
+[1] Checkout / marketplace ──────── RG 5319: percepción de IVA (agente = plataforma, p. ej. Mercado Libre)
+    │
+    ▼
+[2] Pasarela / procesador de pago ─ SIRTAC: retención IIBB sobre cobros con tarjeta, QR y medios liquidados
+    │
+    ▼
+[3] Cuenta de pago (CVU) ────────── SIRCUPA: retención IIBB sobre acreditaciones en cuentas de pago
+    │
+    ▼
+[4] Cuenta bancaria (CBU) ───────── SIRCREB: retención IIBB sobre acreditaciones bancarias
+    │
+    ▼
+ Tu DDJJ de IVA (RG 5319) y de IIBB / Convenio Multilateral (SIRTAC, SIRCUPA, SIRCREB)
+</code></pre>
+<p>La última línea es la que importa: <strong>todo lo que se descuenta en las capas 1 a 4 vuelve en tus declaraciones juradas como pago a cuenta</strong>. Si ese cierre no pasa, el sistema pierde plata en cada venta.</p>
+<h3>Capa 1 — Plataforma: percepción de IVA RG 5319</h3>
+<p>La RG 5319/2023, modificada por la RG 5794/2025 (vigente desde el 1/12/2025), designa como agentes de percepción de IVA a plataformas como Mercado Libre. La alícuota depende de tu situación:</p>
+<div class="tabla"><table>
+<thead>
+<tr>
+<th>Situación del vendedor</th>
+<th>Percepción IVA</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Responsable Inscripto sin incumplimientos</td>
+<td>1 %</td>
+</tr>
+<tr>
+<td>RI con DDJJ sin presentar</td>
+<td>3 %</td>
+</tr>
+<tr>
+<td>RI sin domicilio fiscal electrónico</td>
+<td>5 %</td>
+</tr>
+<tr>
+<td>RI con CUIT limitada, SIPER D o E, o que emite factura M</td>
+<td>7 %</td>
+</tr>
+<tr>
+<td>Monotributista que excede los parámetros</td>
+<td>7 %</td>
+</tr>
+<tr>
+<td>No categorizado con habitualidad</td>
+<td>8 %</td>
+</tr>
+<tr>
+<td>Monotributista dentro de parámetros</td>
+<td>No sufre la percepción</td>
+</tr>
+</tbody></table></div>
+<p><strong>Habitualidad (no categorizados):</strong> 10 o más operaciones en el mes por $ 750.000 o más, o 4 o más operaciones por mes durante un cuatrimestre por ese monto. Para usados de uso personal, el umbral es $ 1.500.000.</p>
+<p>El RI computa lo percibido en la DDJJ de IVA del período o de los cinco siguientes. Si igual te queda un saldo a favor persistente, existe el certificado de exclusión (RG 2226).</p>
+<h3>Capa 2 — Cobro con tarjeta o QR: SIRTAC</h3>
+<p>SIRTAC es el sistema de recaudación de Ingresos Brutos que administra la Comisión Arbitral (COMARB) sobre cobros con tarjeta, QR y otros medios de pago liquidados. <strong>La alícuota sale de un padrón mensual para tu CUIT</strong> y puede llegar al 5 %.</p>
+<h3>Capa 3 — Acreditación en CVU: SIRCUPA</h3>
+<p>SIRCUPA retiene Ingresos Brutos sobre acreditaciones en cuentas de pago (CVU), como la de Mercado Pago. No hay un mínimo nacional: depende del padrón. Quedan exceptuadas, entre otras, las transferencias entre cuentas propias, los sueldos y las transferencias del exterior.</p>
+<p><strong>Estado al 22/10/2026:</strong> CABA, Santa Fe y La Pampa anunciaron su adhesión a SIRCUPA, pero todavía no publicaron norma ni fecha de inicio. Si vendés desde esas jurisdicciones, conviene seguirlo mes a mes.</p>
+<h3>Capa 4 — Banco: SIRCREB</h3>
+<p>SIRCREB es el equivalente sobre las acreditaciones en cuentas bancarias (CBU). Si retirás de la billetera al banco, revisá que la operación figure como transferencia entre cuentas propias y conciliá ambos extractos: el mismo peso no debería quedar retenido dos veces.</p>
+<h3>Lo que ya no existe: RG 5554</h3>
+<p>La RG 5554/2024 (BO 21/08/2024) abrogó las RG 140, 4011 y 4622. Desde el 1/9/2024 <strong>no hay retenciones de IVA ni de Ganancias sobre cobros electrónicos</strong>. Si ves algo así en un resumen posterior a esa fecha, es un error de configuración del agente y se reclama.</p>
+<p>Para el detalle de cada línea del resumen de la billetera, está el análisis de <a href="https://contablix.ar/blog/evitar-retenciones-mercado-pago">por qué Mercado Pago te descuenta plata y cómo evitarlo</a>.</p>
+<h2>2. Tiendanube: tienda propia, cobro de terceros</h2>
+<p>Tiendanube es tu tienda; <strong>quién te cobra es la pasarela que elijas</strong>. Por eso, en una tienda propia, las retenciones dependen del medio de cobro (tarjeta, QR, transferencia a CVU o a CBU) y del padrón de tu CUIT, no de la plataforma de tienda en sí.</p>
+<p>Sobre la percepción de IVA RG 5319: <strong>verificá si la plataforma o la pasarela que usás actúa como agente de percepción</strong> para tu operación. No lo asumas en ningún sentido. Mirá tus liquidaciones: si hay percepción, va a figurar discriminada y la vas a necesitar para tu DDJJ de IVA.</p>
+<h2>3. El «margen fantasma», con números</h2>
+<p>Todo lo anterior es pago a cuenta. El problema aparece cuando:</p>
+<ol>
+<li>no se computa en la DDJJ (por desorden, por no bajar los certificados o por no tener inscripción en la jurisdicción correcta), o</li>
+<li>se computa, pero la retención supera sistemáticamente al impuesto y queda un saldo a favor que se congela.</li>
+</ol>
+<p><strong>Ejemplo con montos ilustrativos y supuestos explícitos:</strong></p>
+<ul>
+<li>Ventas mensuales: <strong>$ 10.000.000</strong> (ilustrativo).</li>
+<li>Margen operativo antes de impuestos: <strong>12 %</strong> = $ 1.200.000 (supuesto).</li>
+<li>60 % cobrado con tarjeta/QR → SIRTAC con alícuota de padrón <strong>supuesta en 2,5 %</strong>.</li>
+<li>40 % llega por transferencia a CVU → SIRCUPA con alícuota de padrón <strong>supuesta en 1,5 %</strong>.</li>
+<li>Percepción IVA RG 5319 aplicada, para simplificar, sobre el total vendido (la base real la define la norma).</li>
+</ul>
+<div class="tabla"><table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Vendedor RI cumplidor</th>
+<th>Vendedor RI sin domicilio fiscal electrónico</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SIRTAC (2,5 % × $ 6.000.000)</td>
+<td>$ 150.000</td>
+<td>$ 150.000</td>
+</tr>
+<tr>
+<td>SIRCUPA (1,5 % × $ 4.000.000)</td>
+<td>$ 60.000</td>
+<td>$ 60.000</td>
+</tr>
+<tr>
+<td>Percepción IVA RG 5319</td>
+<td>1 % → $ 100.000</td>
+<td>5 % → $ 500.000</td>
+</tr>
+<tr>
+<td><strong>Total descontado en el mes</strong></td>
+<td><strong>$ 310.000</strong></td>
+<td><strong>$ 710.000</strong></td>
+</tr>
+<tr>
+<td>% del margen operativo si <strong>no</strong> se computa</td>
+<td>25,8 %</td>
+<td>59,2 %</td>
+</tr>
+<tr>
+<td>En 12 meses, si no se computa</td>
+<td>$ 3.720.000</td>
+<td>$ 8.520.000</td>
+</tr>
+</tbody></table></div>
+<p>Dos lecturas:</p>
+<ul>
+<li>El vendedor desordenado no paga más impuesto «de verdad»: paga <strong>más por adelantado</strong>. Pero si no lo recupera, la diferencia con el cumplidor ($ 400.000 por mes en este ejemplo) es margen que desaparece sólo por no tener el domicilio fiscal electrónico constituido.</li>
+<li>Aun computando todo, si el padrón te asigna una alícuota de SIRTAC alta (supongamos 5 %, es decir $ 300.000 sobre los mismos $ 6.000.000) y tu Ingresos Brutos determinado del mes es menor que lo retenido, acumulás saldo a favor todos los meses. Ese saldo es capital de trabajo congelado: hay que pedir reducción o exclusión del padrón.</li>
+</ul>
+<h2>4. Convenio Multilateral y presencia digital</h2>
+<p>Si vendés a compradores de varias provincias, en general estás en <strong>Convenio Multilateral</strong> de Ingresos Brutos. La RG CA 5/2021 de la Comisión Arbitral establece que la presencia digital genera sustento territorial en la provincia del comprador: aunque no tengas local ni empleados ahí, esa jurisdicción participa de tu base.</p>
+<p>Consecuencia práctica para la arquitectura: <strong>las retenciones te llegan de varias jurisdicciones y se cargan como deducciones en SIFERE WEB («Carga de Deducciones»)</strong>. Si estás inscripto sólo en tu provincia y vendés a todo el país, el sistema te retiene como si fueras multijurisdiccional pero tu DDJJ no tiene dónde recibir esos créditos.</p>
+<p>En Provincia de Buenos Aires, además, la RN 25/2025 de ARBA prevé que ante una retención indebida tenés <strong>90 días para pedir la devolución a la billetera</strong>. Pasado ese plazo, el camino es más largo.</p>
+<h2>5. Cómo bajar las retenciones (sin trucos)</h2>
+<ol>
+<li><strong>Inscripción completa y coherente.</strong> CUIT con domicilio fiscal electrónico constituido, DDJJ al día, Ingresos Brutos (local o Convenio Multilateral) con las jurisdicciones donde realmente vendés. Esto sólo ya te mueve de fila en la tabla de RG 5319.</li>
+<li><strong>Datos fiscales cargados en cada plataforma.</strong> Condición frente al IVA, inscripción en Ingresos Brutos y jurisdicciones. Si la plataforma no tiene tus datos actualizados, puede encuadrarte en una fila peor de la tabla.</li>
+<li><strong>Revisión mensual del padrón.</strong> SIRTAC y SIRCUPA trabajan con padrones mensuales. Revisá qué alícuota te asignaron y, si no refleja tu actividad real, pedí reducción o exclusión ante la jurisdicción que corresponda.</li>
+<li><strong>Certificados de exclusión.</strong> Para IVA, si el saldo a favor por percepciones persiste, el certificado de la RG 2226.</li>
+<li><strong>Conciliación como proceso, no como evento.</strong> Bajá mensualmente los comprobantes de retención y percepción de cada agente y cruzalos con las DDJJ. Si lo automatizás, mejor: es un <em>job</em> de conciliación como cualquier otro.</li>
+</ol>
+<p>Si querés que alguien mire tu caso completo (plataformas, jurisdicciones, padrón), eso es lo que hace una <a href="https://contablix.ar/servicios/consultoria-ecommerce">consultoría impositiva para e-commerce</a>.</p>
+<h2>6. Monotributo vs. Responsable Inscripto para un seller</h2>
+<h3>El mito del IVA con precio final fijo</h3>
+<p>El argumento típico: «si paso a RI, pierdo el 21 % del precio». No es así. Con precio final fijo por el mercado, el RI separa el IVA del precio, pero <strong>sólo paga la diferencia entre IVA débito e IVA crédito</strong>. Y las comisiones de Mercado Libre llevan IVA: para el RI son crédito fiscal; para el monotributista, costo.</p>
+<p><strong>Ejemplo ilustrativo de una unidad vendida a $ 121.000 final:</strong></p>
+<div class="tabla"><table>
+<thead>
+<tr>
+<th></th>
+<th>Monotributista</th>
+<th>Responsable Inscripto</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Precio de venta</td>
+<td>$ 121.000</td>
+<td>$ 100.000 neto + $ 21.000 IVA</td>
+</tr>
+<tr>
+<td>Costo de mercadería</td>
+<td>$ 60.500 (IVA incluido, es costo)</td>
+<td>$ 50.000 neto + $ 10.500 IVA crédito</td>
+</tr>
+<tr>
+<td>Comisión de la plataforma</td>
+<td>$ 18.150 (IVA incluido, es costo)</td>
+<td>$ 15.000 neto + $ 3.150 IVA crédito</td>
+</tr>
+<tr>
+<td>IVA a pagar</td>
+<td>—</td>
+<td>$ 21.000 − $ 13.650 = $ 7.350</td>
+</tr>
+<tr>
+<td>Margen antes de cuota / Ganancias / IIBB</td>
+<td>$ 42.350</td>
+<td>$ 35.000</td>
+</tr>
+</tbody></table></div>
+<p>El IVA efectivo del RI en esta unidad es $ 7.350, alrededor del 6 % del precio final, no el 21 %. Del lado del monotributista hay que restar la cuota fija mensual; del lado del RI, Ganancias (escala del 5 % al 35 % sobre la ganancia neta anual) e Ingresos Brutos. Cuál conviene depende del volumen, del margen y de a quién le vendés (a empresas RI les sirve que les emitas Factura A).</p>
+<h3>Dónde se rompe el monotributo</h3>
+<ul>
+<li>Si el monotributista <strong>excede los parámetros</strong>, la percepción de RG 5319 sube al 7 %.</li>
+<li>Si en 12 meses superás el tope de la categoría K ($ 126.610.839 de ingresos brutos), quedás <strong>excluido de pleno derecho</strong> y pasás a RI.</li>
+</ul>
+<p>Para comparar los dos escenarios con tus números, podés usar el <a href="https://contablix.ar/impuestos-responsable-inscripto">simulador de impuestos para Responsable Inscripto 2026</a>. Y si vendés principalmente en Mercado Libre, la guía de <a href="https://contablix.ar/blog/impuestos-mercado-libre-2026-guia-definitiva">impuestos en Mercado Libre 2026</a> tiene el detalle plataforma por plataforma.</p>
+<h2>Checklist del seller</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Domicilio fiscal electrónico constituido y DDJJ al día (te define la alícuota de RG 5319).</li>
+<li><input disabled="" type="checkbox"> Datos fiscales cargados en cada plataforma y pasarela que uso.</li>
+<li><input disabled="" type="checkbox"> Inscripción en Ingresos Brutos acorde a dónde vendo (local o Convenio Multilateral).</li>
+<li><input disabled="" type="checkbox"> Reviso todos los meses la alícuota de padrón de SIRTAC y SIRCUPA.</li>
+<li><input disabled="" type="checkbox"> Descargo y computo todas las retenciones y percepciones (IVA y SIFERE WEB).</li>
+<li><input disabled="" type="checkbox"> Si tengo saldo a favor persistente, inicio reducción, exclusión o certificado.</li>
+<li><input disabled="" type="checkbox"> Verifiqué si mi plataforma de tienda o mi pasarela actúa como agente de percepción de IVA.</li>
+<li><input disabled="" type="checkbox"> Sé en qué categoría de monotributo estoy y cuánto me falta para el tope.</li>
+</ul>
+<h2>Preguntas frecuentes</h2>
+<p><strong>¿Mercado Pago me sigue reteniendo IVA y Ganancias?</strong>
+No debería. Desde el 1/9/2024, la RG 5554/2024 eliminó esas retenciones sobre cobros electrónicos. Lo que sí puede haber son retenciones de Ingresos Brutos (SIRTAC, SIRCUPA, SIRCREB) y, en marketplaces, la percepción de IVA de la RG 5319.</p>
+<p><strong>¿Las retenciones son un costo?</strong>
+No: son pagos a cuenta. Se convierten en costo si no las computás en tus DDJJ o si acumulás saldos a favor que nunca recuperás.</p>
+<p><strong>Soy monotributista, ¿me perciben IVA en Mercado Libre?</strong>
+Si estás dentro de los parámetros de tu categoría, no. Si los excedés, la percepción es del 7 %.</p>
+<p><strong>¿Tiendanube me retiene?</strong>
+Las retenciones dependen del medio de cobro y del padrón de tu CUIT. Verificá en tus liquidaciones si la plataforma o la pasarela actúan como agentes de percepción para tu operación.</p>
+<p><strong>¿Qué hago si me retuvieron de más en Provincia de Buenos Aires?</strong>
+Según la RN 25/2025 de ARBA, tenés 90 días para pedirle la devolución a la billetera. Después, el reclamo es más largo.</p>
+<hr>
+<p><em>Este artículo es información general actualizada a octubre de 2026 y no constituye asesoramiento profesional individual. Antes de decidir, revisá tu situación con un profesional.</em></p>
+<p><strong>Sobre el autor.</strong> Cr. Francisco Guillermo Ramírez es fundador de <a href="https://contablix.ar">Contablix, estudio contable online para e-commerce, freelancers y empresas digitales</a>. Contador Público (UNCuyo) y Master in Laws en Derecho Tributario (UTDT), con más de 12 años de experiencia. Desde 2020, Contablix acompaña a +250 clientes activos y +1000 emprendedores confiaron en el estudio, con 5,0 en Google. Si sos contador y llevás sellers, en <a href="https://pacioli.ar">Pacioli, software contable con IA para estudios contables en Argentina</a>, tenés una herramienta pensada para ordenar este tipo de conciliaciones por cliente.</p>
+</article>
+<aside class="cta">
+<p><strong>¿Querés bajarlo a tu caso?</strong> <a href="https://contablix.ar">Contablix</a> es un estudio contable online para e-commerce, freelancers y empresas digitales. Si sos contador, <a href="https://pacioli.ar">Pacioli</a> es el software contable con IA para estudios contables en Argentina.</p>
+</aside>
+<footer>
+<p>Material informativo y educativo: no constituye asesoramiento impositivo ni contable. Consultá a tu contador antes de decidir.</p>
+<p>Parte de la <a href="../">guía open-source de impuestos en Argentina 2026</a>, mantenida por <a href="https://contablix.ar">Contablix</a>. Licencia MIT.</p>
+</footer>
+</main>
+</body>
+</html>

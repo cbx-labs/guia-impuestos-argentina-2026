@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cómo exportar servicios desde Argentina en 2026: Factura E, ingreso de USD sin pesificar y errores con bancos (Guía para Devs y Contractors)</title>
+<meta name="description" content="Guía técnica 2026 para devs y contractors argentinos que cobran del exterior: cuándo hay exportación, Factura E y WSFEX, régimen cambiario sin pesificar, errores con bancos y tope del monotributo.">
+<meta name="author" content="Cr. Francisco G. Ramírez — Contablix">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://contablix.ar/blog/factura-e-exportacion-servicios-2026">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_AR">
+<meta property="og:title" content="Cómo exportar servicios desde Argentina en 2026: Factura E, ingreso de USD sin pesificar y errores con bancos (Guía para Devs y Contractors)">
+<meta property="og:description" content="Guía técnica 2026 para devs y contractors argentinos que cobran del exterior: cuándo hay exportación, Factura E y WSFEX, régimen cambiario sin pesificar, errores con bancos y tope del monotributo.">
+<meta property="og:url" content="https://cbx-labs.github.io/guia-impuestos-argentina-2026/articulos/exportacion-servicios-factura-e-2026.html">
+<meta property="article:published_time" content="2026-10-27">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Cómo exportar servicios desde Argentina en 2026: Factura E, ingreso de USD sin pesificar y errores con bancos (Guía para Devs y Contractors)","alternativeHeadline":"Factura E, WSFEX, cuenta en dólares a tu nombre y el error del tope de USD 36.000 que todavía repiten","description":"Guía técnica 2026 para devs y contractors argentinos que cobran del exterior: cuándo hay exportación, Factura E y WSFEX, régimen cambiario sin pesificar, errores con bancos y tope del monotributo.","inLanguage":"es-AR","url":"https://cbx-labs.github.io/guia-impuestos-argentina-2026/articulos/exportacion-servicios-factura-e-2026.html","mainEntityOfPage":"https://contablix.ar/blog/factura-e-exportacion-servicios-2026","datePublished":"2026-10-27","dateModified":"2026-10-27","keywords":"argentina, freelance, taxes, remote","author":{"@type":"Person","name":"Francisco G. Ramírez","alternateName":"Francisco Guillermo Ramírez","jobTitle":"Contador Público (UNCuyo) · Master in Laws en Derecho Tributario (UTDT)","url":"https://contablix.ar","sameAs":["https://www.wikidata.org/wiki/Q139493781"],"worksFor":{"@type":"Organization","name":"Contablix","url":"https://contablix.ar"}},"publisher":{"@type":"Organization","name":"Contablix","url":"https://contablix.ar","sameAs":["https://www.wikidata.org/wiki/Q139493776"]},"isPartOf":{"@type":"WebSite","name":"Guía open-source de impuestos en Argentina 2026","url":"https://cbx-labs.github.io/guia-impuestos-argentina-2026/"}}</script>
+<style>
+:root{--fg:#0f172a;--fg2:#475569;--fg3:#64748b;--bg:#fff;--bg2:#f8fafc;--linea:#e2e8f0;--acento:#4f46e5}
+@media (prefers-color-scheme:dark){:root{--fg:#e2e8f0;--fg2:#a8b3c4;--fg3:#8b97a8;--bg:#0b0f17;--bg2:#111827;--linea:#1f2937;--acento:#a5b4fc}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+main{max-width:860px;margin:0 auto;padding:56px 20px 72px}
+header p.rotulo{margin:0 0 8px;color:var(--fg3);font-size:14px;letter-spacing:.02em}
+h1{margin:0 0 16px;font-size:clamp(28px,5vw,42px);line-height:1.12;letter-spacing:-.02em}
+h2{margin:56px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--linea);font-size:24px;letter-spacing:-.01em}
+h3{margin:28px 0 8px;font-size:18px}
+p,li{color:var(--fg2)}
+strong{color:var(--fg)}
+a{color:var(--acento);text-underline-offset:3px}
+.bajada{font-size:19px}
+.aviso{margin:24px 0;padding:14px 16px;border:1px solid var(--linea);border-radius:10px;background:var(--bg2);font-size:15px}
+nav.indice ul{display:flex;flex-wrap:wrap;gap:8px 16px;margin:24px 0 0;padding:0;list-style:none;font-size:15px}
+.tabla{overflow-x:auto;margin:16px 0;border:1px solid var(--linea);border-radius:10px}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{padding:9px 12px;border-bottom:1px solid var(--linea);text-align:left;vertical-align:top}
+th{background:var(--bg2);color:var(--fg);font-weight:600}
+td{color:var(--fg2);font-variant-numeric:tabular-nums}
+tr:last-child td{border-bottom:0}
+pre{overflow-x:auto;padding:14px 16px;border-radius:10px;background:var(--bg2);border:1px solid var(--linea);font-size:14px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+ul.recursos{padding-left:20px}
+ul.recursos li{margin:6px 0}
+footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--linea);color:var(--fg3);font-size:14px}
+footer p{color:var(--fg3)}
+
+article h2{margin:48px 0 12px}
+article h3{margin:28px 0 8px}
+blockquote{margin:20px 0;padding:12px 16px;border-left:3px solid var(--acento);background:var(--bg2);border-radius:0 10px 10px 0}
+blockquote p{margin:0}
+.miga{font-size:14px;margin:0 0 24px}
+.firma{display:flex;flex-wrap:wrap;gap:4px 12px;margin:20px 0 0;color:var(--fg3);font-size:15px}
+.firma strong{color:var(--fg)}
+.cta{margin:40px 0 0;padding:18px 20px;border:1px solid var(--linea);border-radius:12px;background:var(--bg2)}
+.cta p{margin:6px 0}
+hr{border:0;border-top:1px solid var(--linea);margin:40px 0}
+li input[type=checkbox]{margin-right:8px}
+</style>
+</head>
+<body>
+<main>
+<header>
+<p class="miga"><a href="../">← Guía open-source de impuestos en Argentina 2026</a></p>
+<p class="rotulo">Artículo técnico · 27/10/2026</p>
+<h1>Cómo exportar servicios desde Argentina en 2026: Factura E, ingreso de USD sin pesificar y errores con bancos (Guía para Devs y Contractors)</h1>
+<p class="bajada">Factura E, WSFEX, cuenta en dólares a tu nombre y el error del tope de USD 36.000 que todavía repiten</p>
+<p class="firma"><span>Por <strong>Cr. Francisco G. Ramírez</strong></span><span>Fundador de <a href="https://contablix.ar">Contablix</a></span><span>Versión original en <a href="https://contablix.ar/blog/factura-e-exportacion-servicios-2026">contablix.ar</a></span></p>
+</header>
+<article>
+<h2>TL;DR</h2>
+<ul>
+<li><strong>Exportás servicios cuando el servicio se utiliza o explota efectivamente en el exterior.</strong> Que el cliente sea extranjero ayuda, pero no alcanza.</li>
+<li><strong>Se factura con Factura E</strong>, desde un punto de venta específico de exportación (Comprobantes en línea) o por web service (WSFEX) si facturás desde código.</li>
+<li><strong>El tipo de cambio de la factura</strong> es el vendedor divisa del Banco Nación del día hábil cambiario anterior (RG 5616/2024).</li>
+<li><strong>Si sos persona humana, ya no tenés que pesificar.</strong> El tope de USD 36.000 anual dejó de regir en septiembre de 2025 (Com. BCRA «A» 8330). La condición es acreditar los dólares en una cuenta en moneda extranjera <strong>a tu nombre</strong>, en una entidad local, dentro de los 20 días hábiles del cobro.</li>
+<li><strong>El banco no te puede cobrar comisión por esa acreditación</strong>, salvo trasladarte el costo que le cobre un banco del exterior.</li>
+<li><strong>Si sos monotributista, lo exportado suma al tope de tu categoría.</strong> Es el límite que más se rompe sin darse cuenta.</li>
+</ul>
+<hr>
+<p>Si trabajás para una startup de San Francisco, mantenés un SaaS con clientes en Europa o cobrás como contractor a través de una plataforma de pagos, esta guía es para vos. La escribí pensando en gente técnica: menos marketing, más flujo, más «qué pasa si». Cuando haga falta bajar a tu caso concreto, al final te dejo por dónde seguir.</p>
+<h2>1. ¿Lo tuyo es exportación de servicios?</h2>
+<p>El criterio legal es uno solo: <strong>dónde se utiliza o explota efectivamente el servicio</strong>. No importa tanto dónde estás sentado vos ni la nacionalidad del cliente, sino dónde se aprovecha económicamente lo que hacés.</p>
+<div class="tabla"><table>
+<thead>
+<tr>
+<th>Caso</th>
+<th>¿Exportación?</th>
+<th>Por qué</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Dev full-time como contractor de una empresa de EE.UU. que vende su producto afuera</td>
+<td>Sí, en general</td>
+<td>El código se integra a un producto que se explota en el exterior</td>
+</tr>
+<tr>
+<td>SaaS propio con suscriptores en el exterior</td>
+<td>Sí, para esas ventas</td>
+<td>El servicio lo usan y lo pagan usuarios del exterior</td>
+</tr>
+<tr>
+<td>Diseño para una agencia del exterior cuyo cliente final es una marca argentina que vende en Argentina</td>
+<td>Dudoso</td>
+<td>El aprovechamiento puede estar en el país aunque el pagador sea extranjero</td>
+</tr>
+<tr>
+<td>Consultoría a una empresa extranjera para abrir su filial en Argentina</td>
+<td>Dudoso</td>
+<td>Mismo problema: el servicio se aprovecha acá</td>
+</tr>
+<tr>
+<td>SaaS con clientes argentinos que pagan con tarjeta internacional</td>
+<td>No</td>
+<td>El usuario y el aprovechamiento están en el país</td>
+</tr>
+</tbody></table></div>
+<p><strong>Plataformas de pago y de contratación.</strong> Cuando cobrás a través de plataformas tipo Deel o Payoneer, preguntate dos cosas: quién es tu contraparte en el contrato (a quién le facturás) y desde dónde llega efectivamente el dinero. No es lo mismo un pago del exterior que entra a tu cuenta en dólares que una transferencia local en pesos que hace una entidad intermedia. El encuadre fiscal y el cambiario dependen de esa respuesta, no del nombre de la plataforma.</p>
+<blockquote>
+<p>Regla práctica: guardá el contrato (o la orden de trabajo, o los términos aceptados) donde se vea quién es el cliente y para qué usa tu trabajo. Es lo primero que te van a pedir el banco y, eventualmente, ARCA.</p>
+</blockquote>
+<h2>2. Factura E paso a paso (Comprobantes en línea)</h2>
+<p>Si facturás pocas veces por mes, el camino es la web de ARCA.</p>
+<ol>
+<li><strong>Alta del punto de venta de exportación.</strong> En «Administración de puntos de venta y domicilios» das de alta un punto de venta específico para comprobantes de exportación. No sirve el que usás para Factura C, A o B.</li>
+<li><strong>Cargá los datos del cliente del exterior.</strong> Nombre o razón social, domicilio, país de destino y su identificación tributaria en su país (en EE.UU., por ejemplo, el identificador fiscal de la empresa).</li>
+<li><strong>Elegí el tipo de exportación «servicios».</strong> Los Incoterms y los permisos de embarque son para bienes; en servicios, normalmente, no aplican.</li>
+<li><strong>Moneda y tipo de cambio.</strong> Facturás en la moneda del contrato. Comprobantes en línea completa solo el tipo de cambio según la RG 5616/2024: vendedor divisa del Banco Nación del día hábil cambiario anterior.</li>
+<li><strong>Detalle.</strong> Describí el servicio con precisión («Desarrollo de software — sprint del mes», «Licencia SaaS plan anual»). Las descripciones genéricas tipo «servicios varios» después cuestan explicarlas.</li>
+<li><strong>Sin IVA.</strong> La Factura E no lleva IVA. Si sos Responsable Inscripto, además podés recuperar el IVA de las compras vinculadas a la exportación (art. 43 de la Ley de IVA).</li>
+</ol>
+<p>Para el detalle con capturas, tenés la <a href="https://contablix.ar/blog/factura-e-exportacion-servicios-2026">guía de Factura E 2026 para exportación de servicios</a>.</p>
+<h2>3. Si facturás desde código: WSFEX</h2>
+<p>Si tu SaaS emite decenas o cientos de facturas por mes, hacerlo a mano no escala. ARCA expone un web service SOAP específico para exportación, <strong>WSFEX</strong>, separado del que se usa para Factura A/B/C. El flujo es siempre el mismo:</p>
+<ol>
+<li><strong>Autenticación (WSAA).</strong> Generás un certificado digital asociado a tu CUIT, firmás un ticket de acceso para el servicio <code>wsfex</code> y obtenés <code>token</code> + <code>sign</code>. Cacheá el ticket mientras sea válido: pedir uno nuevo en cada request es la forma más rápida de que te rechacen.</li>
+<li><strong>Punto de venta habilitado para web service.</strong> El punto de venta tiene que estar dado de alta como de exportación por web service, no por Comprobantes en línea.</li>
+<li><strong>Parámetros.</strong> Antes de emitir, resolvé los códigos con los métodos <code>FEXGetPARAM_*</code> (tipo de comprobante, tipo de exportación, moneda, país de destino, cotización). No hardcodees códigos sin haberlos validado en homologación.</li>
+<li><strong>Numeración.</strong> <code>FEXGetLast_CMP</code> te devuelve el último número autorizado para ese punto de venta y tipo; <code>FEXGetLast_ID</code>, el último identificador de request.</li>
+<li><strong>Autorización.</strong> <code>FEXAuthorize</code> devuelve el <strong>CAE</strong> y su vencimiento. Ese CAE va impreso en el comprobante junto con el código QR.</li>
+</ol>
+<p>Un pseudo-flujo en TypeScript para que veas la forma (no es una librería; adaptalo al cliente SOAP que uses):</p>
+<pre><code class="language-ts">type FexAuth = { token: string; sign: string; cuit: string };
+
+async function emitirFacturaE(auth: FexAuth, venta: VentaExterior) {
+  // 1. Códigos desde los parámetros del propio web service, no hardcodeados
+  const tipoCbte = await resolverParam(auth, &quot;FEXGetPARAM_Cbte_Tipo&quot;, &quot;Factura E&quot;);
+  const tipoExpo = await resolverParam(auth, &quot;FEXGetPARAM_Tipo_Expo&quot;, &quot;Servicios&quot;);
+  const moneda   = await resolverParam(auth, &quot;FEXGetPARAM_MON&quot;, venta.moneda);
+  const pais     = await resolverParam(auth, &quot;FEXGetPARAM_DST_pais&quot;, venta.paisCliente);
+
+  // 2. Cotización: debe respetar el criterio de la RG 5616/2024
+  //    (vendedor divisa BNA del día hábil cambiario anterior)
+  const cotizacion = await fex(auth, &quot;FEXGetPARAM_Ctz&quot;, { Mon_id: moneda });
+
+  // 3. Numeración e id de request
+  const ultimoNro = await fex(auth, &quot;FEXGetLast_CMP&quot;, { Pto_venta: venta.ptoVta, Cbte_Tipo: tipoCbte });
+  const ultimoId  = await fex(auth, &quot;FEXGetLast_ID&quot;, {});
+
+  const request = {
+    Id: ultimoId + 1,
+    Cbte_Tipo: tipoCbte,
+    Punto_vta: venta.ptoVta,
+    Cbte_nro: ultimoNro + 1,
+    Tipo_expo: tipoExpo,
+    Dst_cmp: pais,
+    Cliente: venta.razonSocial,
+    Domicilio_cliente: venta.domicilio,
+    Id_impositivo: venta.taxIdCliente,
+    Moneda_Id: moneda,
+    Moneda_ctz: cotizacion,
+    Imp_total: venta.total,
+    Items: venta.items,
+  };
+
+  // 4. Idempotencia: si hay timeout, NO reintentes a ciegas.
+  //    Consultá primero si ese número ya quedó autorizado.
+  try {
+    return await fex(auth, &quot;FEXAuthorize&quot;, { Cmp: request });
+  } catch (e) {
+    if (!esTimeout(e)) throw e;
+    const existente = await fex(auth, &quot;FEXGetCMP&quot;, {
+      Cbte_tipo: tipoCbte, Punto_vta: venta.ptoVta, Cbte_nro: request.Cbte_nro,
+    });
+    if (existente) return existente; // ya tenía CAE: no dupliques
+    throw e;
+  }
+}
+</code></pre>
+<p>Tres lecciones que se aprenden en producción:</p>
+<ul>
+<li><strong>Serializá la emisión por punto de venta.</strong> Dos workers que piden <code>FEXGetLast_CMP</code> en paralelo van a intentar el mismo número. Un lock o una cola por punto de venta te ahorra rechazos.</li>
+<li><strong>Persistí el request antes de mandarlo.</strong> Si el proceso se cae entre el envío y la respuesta, necesitás saber qué número intentaste para consultarlo con <code>FEXGetCMP</code>.</li>
+<li><strong>Homologación primero.</strong> ARCA tiene un entorno de pruebas con su propio certificado. Validá ahí los códigos de parámetros y los casos de error antes de tocar producción.</li>
+</ul>
+<h2>4. El error del tope de USD 36.000 (y el régimen cambiario vigente)</h2>
+<p>Todavía circula la idea de que «podés cobrar hasta USD 36.000 por año sin pesificar». <strong>Eso fue cierto hasta septiembre de 2025.</strong> Hoy no rige para personas humanas:</p>
+<ul>
+<li><strong>Com. BCRA «A» 8330 (18/9/2025):</strong> las personas humanas quedan exceptuadas de liquidar (pesificar) los cobros de exportación de servicios, <strong>sin límite de monto</strong>.</li>
+<li><strong>Com. BCRA «A» 8417 (9/4/2026):</strong> extendió esa excepción a todos los conceptos de servicios.</li>
+<li><strong>Condición (Com. «A» 8116):</strong> los dólares tienen que acreditarse en una <strong>cuenta en moneda extranjera a tu nombre</strong>, en una entidad financiera local, <strong>dentro de los 20 días hábiles</strong> del cobro.</li>
+<li><strong>Comisiones:</strong> el banco no puede cobrarte por esa acreditación. Sólo puede trasladarte, al costo, lo que le cobren bancos del exterior.</li>
+</ul>
+<p><strong>Sociedades: otra historia.</strong> Si facturás a través de una SRL o SAS, la sociedad sigue obligada a ingresar y liquidar las divisas en el Mercado Libre de Cambios dentro de los 20 días hábiles (Com. «A» 8137). Por eso, para muchos contractors, «armar una sociedad» no mejora el tema cambiario: lo empeora.</p>
+<div class="tabla"><table>
+<thead>
+<tr>
+<th></th>
+<th>Persona humana</th>
+<th>Sociedad (SRL/SAS)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>¿Tiene que pesificar?</td>
+<td>No (A 8330 / A 8417)</td>
+<td>Sí, en el MLC (A 8137)</td>
+</tr>
+<tr>
+<td>Plazo para ingresar</td>
+<td>20 días hábiles del cobro</td>
+<td>20 días hábiles</td>
+</tr>
+<tr>
+<td>Cuenta de destino</td>
+<td>Cuenta en USD <strong>a tu nombre</strong> en entidad local</td>
+<td>Cuenta de la sociedad</td>
+</tr>
+<tr>
+<td>Comisión por acreditación</td>
+<td>No corresponde (sólo costos de bancos del exterior)</td>
+<td>Según condiciones del banco</td>
+</tr>
+</tbody></table></div>
+<h2>5. Errores típicos con bancos</h2>
+<p>Son los que más vemos en consultas de devs y contractors:</p>
+<ol>
+<li><strong>Te acreditan en la cuenta en pesos.</strong> Si el banco recibe la transferencia y no tenés cuenta en dólares (o la orden indica la cuenta en pesos), la operación puede terminar liquidada al tipo de cambio oficial. Abrí la cuenta en USD <strong>antes</strong> del primer cobro y pasale al cliente los datos exactos.</li>
+<li><strong>Te cobran una comisión por recibir.</strong> Si ves un débito por «comisión por acreditación de transferencia del exterior», reclamalo citando la normativa del BCRA. Lo único trasladable es lo que cobra el banco corresponsal del exterior, al costo.</li>
+<li><strong>Cuenta a nombre de otra persona.</strong> La excepción exige cuenta a tu nombre. La cuenta de tu pareja o de un familiar no sirve, aunque sea en dólares.</li>
+<li><strong>Se te pasan los 20 días hábiles.</strong> Si los fondos quedan «estacionados» en una plataforma o cuenta del exterior, el plazo corre igual desde el cobro. Automatizá el retiro.</li>
+<li><strong>No tenés respaldo cuando el banco lo pide.</strong> Factura E, contrato y, si corresponde, el detalle de la plataforma. Cuando el banco te pide documentación y no la tenés, la transferencia queda retenida o se rechaza.</li>
+<li><strong>Concepto mal declarado.</strong> Si cargás el ingreso como «transferencia personal» o «ayuda familiar» y en realidad es un cobro por servicios, quedás con una inconsistencia entre lo que declarás ante el banco y lo que facturás.</li>
+</ol>
+<h2>6. Monotributo: cuándo la Factura E te cambia de categoría</h2>
+<p>Podés estar en el monotributo y emitir Factura E. Pero <strong>todo lo que exportás suma a tus ingresos brutos</strong> para la categoría. Y como facturás en dólares convertidos al tipo de cambio de cada factura, una suba del tipo de cambio te empuja hacia arriba aunque cobres lo mismo en USD.</p>
+<p>Escala vigente desde agosto 2026 (servicios, extracto):</p>
+<div class="tabla"><table>
+<thead>
+<tr>
+<th>Cat.</th>
+<th>Ingresos brutos anuales (tope)</th>
+<th>Cuota mensual servicios</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>G</td>
+<td>$ 53.995.799</td>
+<td>$ 230.313</td>
+</tr>
+<tr>
+<td>H</td>
+<td>$ 81.924.660</td>
+<td>$ 522.707</td>
+</tr>
+<tr>
+<td>I</td>
+<td>$ 91.699.762</td>
+<td>$ 963.748</td>
+</tr>
+<tr>
+<td>J</td>
+<td>$ 105.012.519</td>
+<td>$ 1.167.300</td>
+</tr>
+<tr>
+<td>K</td>
+<td>$ 126.610.839</td>
+<td>$ 1.614.446</td>
+</tr>
+</tbody></table></div>
+<p>La cuota incluye impuesto integrado, aporte jubilatorio y obra social. La escala se actualiza en febrero y agosto, y te recategorizás en enero y julio.</p>
+<p><strong>Ejemplo (montos ilustrativos, en pesos de cada factura):</strong></p>
+<ul>
+<li>Facturás el equivalente a <strong>$ 6.500.000 por mes</strong> → $ 78.000.000 en 12 meses → <strong>categoría H</strong>, cuota de $ 522.707.</li>
+<li>Subís a <strong>$ 7.000.000 por mes</strong> → $ 84.000.000 → pasás el tope de H y vas a <strong>categoría I</strong>, cuota de $ 963.748.</li>
+</ul>
+<p>Esos $ 500.000 mensuales extra de facturación te suben la cuota en <strong>$ 441.041 por mes</strong>. Casi todo el aumento se va en el salto de categoría. Saber dónde estás parado antes de la recategorización vale plata; para eso está la <a href="https://contablix.ar/calculadora-monotributo">calculadora y simulador de monotributo 2026</a>.</p>
+<p><strong>El techo duro:</strong> si en 12 meses superás los $ 126.610.839 de la categoría K (un promedio de unos $ 10,55 millones por mes), quedás <strong>excluido de pleno derecho</strong> y pasás a Responsable Inscripto.</p>
+<h2>7. Cuándo mirar Responsable Inscripto</h2>
+<p>El salto a RI asusta, pero para un exportador de servicios tiene una particularidad: <strong>la exportación no lleva IVA</strong>, así que el IVA no te come el precio. Lo que cambia es:</p>
+<ul>
+<li><strong>Ganancias</strong> como persona humana, con escala del 5 % al 35 % sobre la ganancia neta anual, y anticipos.</li>
+<li><strong>Autónomos</strong> mensual (el monto depende de la categoría).</li>
+<li><strong>Ingresos Brutos</strong> según tu provincia (el tratamiento de la exportación de servicios varía por jurisdicción; verificalo en la tuya).</li>
+<li><strong>Recuperás el IVA de tus compras vinculadas</strong> (equipo, software, coworking) vía art. 43.</li>
+</ul>
+<p>Conviene mirarlo con números cuando estás en las categorías altas, cuando tus gastos deducibles son significativos o cuando sabés que vas a superar el tope de K. Si estás en esa zona, un <a href="https://contablix.ar/servicios/freelancers-contractors">contador para freelancers y contractors que exportan servicios</a> te puede armar la comparación con tu caso real.</p>
+<h2>Checklist</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Confirmé que el servicio se utiliza o explota en el exterior y tengo el contrato que lo muestra.</li>
+<li><input disabled="" type="checkbox"> Tengo punto de venta de exportación (Comprobantes en línea o web service, según cómo facturo).</li>
+<li><input disabled="" type="checkbox"> Mis Factura E tienen cliente, país, identificación tributaria y descripción precisa.</li>
+<li><input disabled="" type="checkbox"> Si facturo por WSFEX: ticket WSAA cacheado, emisión serializada por punto de venta e idempotencia ante timeouts.</li>
+<li><input disabled="" type="checkbox"> Tengo cuenta en USD <strong>a mi nombre</strong> en un banco local y se la pasé al cliente.</li>
+<li><input disabled="" type="checkbox"> Ingreso los fondos dentro de los 20 días hábiles del cobro.</li>
+<li><input disabled="" type="checkbox"> Reviso que el banco no me cobre comisión por acreditación.</li>
+<li><input disabled="" type="checkbox"> Sumo lo exportado a mis ingresos brutos y controlo la categoría antes de cada recategorización.</li>
+<li><input disabled="" type="checkbox"> Sé a qué monto anual me conviene evaluar Responsable Inscripto.</li>
+</ul>
+<h2>Preguntas frecuentes</h2>
+<p><strong>¿Puedo seguir cobrando en dólares sin pesificar si facturo más de USD 36.000 por año?</strong>
+Sí, si sos persona humana. Ese tope dejó de regir con la Com. BCRA «A» 8330 de septiembre de 2025. La condición es acreditar los fondos en una cuenta en moneda extranjera a tu nombre en una entidad local, dentro de los 20 días hábiles.</p>
+<p><strong>¿El monotributista puede emitir Factura E?</strong>
+Sí. Lo que tenés que vigilar es que lo exportado suma a tus ingresos brutos y te puede cambiar de categoría o sacarte del régimen.</p>
+<p><strong>¿Qué tipo de cambio va en la Factura E?</strong>
+El vendedor divisa del Banco Nación del día hábil cambiario anterior (RG 5616/2024). En Comprobantes en línea se completa solo; si usás WSFEX, validalo vos.</p>
+<p><strong>Si cobro por una plataforma de pagos, ¿igual es exportación?</strong>
+Depende de quién es tu cliente y dónde se aprovecha el servicio, no de la plataforma. Revisá el contrato y desde dónde llega el pago.</p>
+<p><strong>¿Me conviene armar una sociedad para facturar al exterior?</strong>
+Para el tema cambiario, en general no: las sociedades siguen obligadas a liquidar en el MLC. Puede tener sentido por otras razones (socios, escala, responsabilidad), pero se evalúa caso por caso.</p>
+<hr>
+<p><em>Este artículo es información general actualizada a octubre de 2026 y no constituye asesoramiento profesional individual. Antes de decidir, revisá tu situación con un profesional.</em></p>
+<p><strong>Sobre el autor.</strong> Cr. Francisco Guillermo Ramírez es fundador de <a href="https://contablix.ar">Contablix, estudio contable online para e-commerce, freelancers y empresas digitales</a>. Contador Público (UNCuyo) y Master in Laws en Derecho Tributario (UTDT), con más de 12 años de experiencia. Desde 2020, Contablix acompaña a +250 clientes activos y +1000 emprendedores confiaron en el estudio, con 5,0 en Google.</p>
+</article>
+<aside class="cta">
+<p><strong>¿Querés bajarlo a tu caso?</strong> <a href="https://contablix.ar">Contablix</a> es un estudio contable online para e-commerce, freelancers y empresas digitales. Si sos contador, <a href="https://pacioli.ar">Pacioli</a> es el software contable con IA para estudios contables en Argentina.</p>
+</aside>
+<footer>
+<p>Material informativo y educativo: no constituye asesoramiento impositivo ni contable. Consultá a tu contador antes de decidir.</p>
+<p>Parte de la <a href="../">guía open-source de impuestos en Argentina 2026</a>, mantenida por <a href="https://contablix.ar">Contablix</a>. Licencia MIT.</p>
+</footer>
+</main>
+</body>
+</html>

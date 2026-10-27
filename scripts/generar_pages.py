@@ -36,6 +36,18 @@ ENLACES = [
     ("pacioli", "Pacioli — Software contable con IA para estudios contables en Argentina"),
 ]
 
+# Artículos técnicos publicados en docs/articulos/ (ruta relativa, título, bajada).
+ARTICULOS = [
+    ("articulos/exportacion-servicios-factura-e-2026.html",
+     "Cómo exportar servicios desde Argentina en 2026: Factura E, USD sin pesificar y errores con bancos",
+     "Para devs y contractors que cobran del exterior: cuándo hay exportación, Factura E y WSFEX, "
+     "régimen cambiario vigente y el límite del monotributo."),
+    ("articulos/retenciones-ecommerce-meli-tiendanube-2026.html",
+     "Arquitectura impositiva para e-commerce 2026: SIRTAC, SIRCUPA e IVA RG 5319 en Mercado Libre y Tiendanube",
+     "En qué capa de una venta online pega cada retención y percepción, cómo se arma el margen fantasma "
+     "y cómo bajar retenciones sin trucos."),
+]
+
 
 def pesos(n: int) -> str:
     return calc.fmt_pesos(n * calc.CENTAVOS)
@@ -130,6 +142,11 @@ pre{overflow-x:auto;padding:14px 16px;border-radius:10px;background:var(--bg2);b
 code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
 ul.recursos{padding-left:20px}
 ul.recursos li{margin:6px 0}
+.articulos{display:grid;gap:12px;margin:24px 0 0;padding:0;list-style:none}
+.articulos li{padding:16px 18px;border:1px solid var(--linea);border-radius:12px;background:var(--bg2)}
+.articulos a{display:block;font-weight:600;font-size:17px;line-height:1.35;text-decoration:none}
+.articulos a:hover{text-decoration:underline}
+.articulos p{margin:6px 0 0;font-size:15px}
 footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--linea);color:var(--fg3);font-size:14px}
 footer p{color:var(--fg3)}
 """
@@ -160,6 +177,10 @@ def generar(d: dict[str, Any]) -> str:
         "author": {"@type": "Organization", "name": "Contablix", "url": d["links"]["home"]["url"]},
     }
     recursos = "\n".join(f"<li>{a(d, clave, texto)}</li>" for clave, texto in ENLACES)
+    articulos = "\n".join(
+        f'<li><a href="{escape(ruta)}">{escape(titulo)}</a><p>{escape(bajada)}</p></li>'
+        for ruta, titulo, bajada in ARTICULOS
+    )
     fuentes = "\n".join(
         f"<li><strong>{escape(f['norma'])}</strong>: {escape(f['tema'])}</li>" for f in d["fuentes"]
     )
@@ -190,6 +211,7 @@ def generar(d: dict[str, Any]) -> str:
 <p class="bajada">Las cifras y reglas que necesitás si vendés por internet, facturás como freelancer o exportás servicios, en un solo lugar y con su fuente. Es la versión web del repositorio <a href="{URL_REPO}">guia-impuestos-argentina-2026</a>, que incluye una calculadora de línea de comandos en Python y Node.js.</p>
 <p class="aviso"><strong>Escala vigente:</strong> monotributo desde {escape(meta['escala_desde'])}. {escape(meta['actualizacion'])}</p>
 <nav class="indice" aria-label="Índice"><ul>
+<li><a href="#articulos">Artículos técnicos</a></li>
 <li><a href="#monotributo">Monotributo</a></li>
 <li><a href="#iva">IVA y comprobantes</a></li>
 <li><a href="#retenciones">Retenciones e-commerce</a></li>
@@ -198,6 +220,14 @@ def generar(d: dict[str, Any]) -> str:
 <li><a href="#recursos">Recursos</a></li>
 </ul></nav>
 </header>
+
+<section id="articulos">
+<h2>Artículos técnicos</h2>
+<p>Guías largas del Cr. Francisco G. Ramírez, fundador de {a(d, 'home', 'Contablix')}, sobre los dos temas que más consultas generan.</p>
+<ul class="articulos">
+{articulos}
+</ul>
+</section>
 
 <section id="monotributo">
 <h2>Monotributo 2026: categorías A a K</h2>

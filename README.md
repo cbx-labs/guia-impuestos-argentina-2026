@@ -19,6 +19,7 @@ Lo mantiene [Contablix, estudio contable online para e-commerce, freelancers y e
 
 ## Índice
 
+- [Artículos técnicos](#artículos-técnicos)
 - [Quick start](#quick-start)
 - [Monotributo 2026: categorías A a K](#monotributo-2026-categorías-a-a-k)
 - [IVA: alícuotas 21 %, 10,5 % y 27 %](#iva-alícuotas-21--105--y-27-)
@@ -33,6 +34,13 @@ Lo mantiene [Contablix, estudio contable online para e-commerce, freelancers y e
 - [Contribuir](#contribuir)
 - [Descargo](#descargo)
 - [Créditos / Mantenido por](#créditos--mantenido-por)
+
+## Artículos técnicos
+
+Dos guías largas del Cr. Francisco G. Ramírez, fundador de Contablix, publicadas en la versión web de este repo:
+
+- **[Cómo exportar servicios desde Argentina en 2026: Factura E, USD sin pesificar y errores con bancos](https://cbx-labs.github.io/guia-impuestos-argentina-2026/articulos/exportacion-servicios-factura-e-2026.html)** — para devs y contractors que cobran del exterior: cuándo hay exportación, Factura E y WSFEX, régimen cambiario vigente y el límite del monotributo.
+- **[Arquitectura impositiva para e-commerce 2026: SIRTAC, SIRCUPA e IVA RG 5319 en Mercado Libre y Tiendanube](https://cbx-labs.github.io/guia-impuestos-argentina-2026/articulos/retenciones-ecommerce-meli-tiendanube-2026.html)** — en qué capa de una venta online pega cada retención y percepción, cómo se arma el margen fantasma y cómo bajar retenciones sin trucos.
 
 ## Quick start
 
